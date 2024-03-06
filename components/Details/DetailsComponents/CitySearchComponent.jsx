@@ -7,7 +7,9 @@ const CitySearch = ({onCityChange}) => {
   const [errorMessage, setErrorMessage] = useState('');
   const AQICN_TOKEN = '00cf2c57afa2b16119f3a817d55cd49df5c5453c';
 
-  React.useEffect(() => {
+  useEffect(() => {
+    let timeoutId;
+
     if (inputedCity) {
       const fetchCities = async () => {
         try {
@@ -23,12 +25,25 @@ const CitySearch = ({onCityChange}) => {
         }
       };
 
-      fetchCities();
+      // Clear the previous timeout if there is one
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      // Set a new timeout
+      timeoutId = setTimeout(fetchCities, 500);
     }
+
+    // Clean up function
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [inputedCity]);
 
   useEffect(() => {
-    onCityChange(city); // Faites remonter l'état à l'aide de la fonction de rappel
+    onCityChange(city);
   }, [city, onCityChange]);
 
   return (
