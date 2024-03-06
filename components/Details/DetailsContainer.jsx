@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Box, Text, Input} from 'native-base';
-import {Icon} from '@rneui/themed';
+import {Box, Text, Input, CheckIcon} from 'native-base';
 
 function DetailsContainer() {
   const [data, setData] = React.useState(null);
@@ -50,7 +49,7 @@ function DetailsContainer() {
           onChangeText={setInputedCity}
           placeholder="Enter city"
         />
-        <Icon name="rowing" />
+        <CheckIcon size="5" mt="0.5" color="emerald.500" />
         {errorMessage && <Text color="danger.800">{errorMessage}</Text>}{' '}
         {/* Affichez le message d'erreur ici */}
       </Box>
