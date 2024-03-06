@@ -19,7 +19,10 @@ const AirQualityCard = ({city}) => {
 
   useEffect(() => {
     const aqiColor = aqi => {
-      if (aqi <= 50) {
+      if (aqi === '-') {
+        setBgColor('primary.500');
+        setAirQuality('Non Renseigné');
+      } else if (aqi <= 50) {
         setBgColor('lime.700');
         setAirQuality('Bon');
       } else if (aqi <= 100) {
@@ -35,7 +38,7 @@ const AirQualityCard = ({city}) => {
         setBgColor('purple.800');
         setAirQuality('Très nocif');
       } else {
-        setBgColor('yellow-900');
+        setBgColor('yellow.900');
         setAirQuality('Dangereux');
       }
     };
@@ -62,7 +65,6 @@ const AirQualityCard = ({city}) => {
       <Center>
         <Box
           w="80%"
-          h="75%"
           bg="gray.100"
           borderWidth="6"
           borderColor={bgColor}
@@ -82,7 +84,6 @@ const AirQualityCard = ({city}) => {
               {airQuality}
             </Text>
           </Center>
-          <Text>AQI: {data.data.aqi}</Text>
           <ScoreContainer aqi={data.data.aqi} bgColor={bgColor} />
         </Box>
       </Center>
