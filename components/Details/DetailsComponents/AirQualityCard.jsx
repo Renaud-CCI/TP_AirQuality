@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Text, Box, Center} from 'native-base';
 import ScoreContainer from './ScoreContainer';
+import ChartContainer from './ChartContainer';
 
 const AQICN_TOKEN = '00cf2c57afa2b16119f3a817d55cd49df5c5453c';
 
@@ -64,7 +65,7 @@ const AirQualityCard = ({city}) => {
     <>
       <Center>
         <Box
-          w="80%"
+          w="90%"
           bg="gray.100"
           borderWidth="6"
           borderColor={bgColor}
@@ -85,6 +86,7 @@ const AirQualityCard = ({city}) => {
             </Text>
           </Center>
           <ScoreContainer aqi={data.data.aqi} bgColor={bgColor} />
+          <ChartContainer data={data} bgColor={bgColor} />
         </Box>
       </Center>
     </>
